@@ -1,7 +1,7 @@
 <?php
 
-// Region code and Product ASIN
-$response = getAmazonPrice("com", "B00KQPGRRE");
+// Melde alle Fehler außer E_NOTICE
+error_reporting(E_ALL & ~E_NOTICE);
 
 function getAmazonPrice($region, $asin) {
 
@@ -41,15 +41,28 @@ function getPage($url) {
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
 	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLINFO_HEADER_OUT, true);
 	$html = curl_exec($curl);
+    $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    /*$information = curl_getinfo($curl);
+    echo "<pre>";
+    var_dump($information);
+    echo "</pre>";*/
 	curl_close($curl);
-	return $html;
+
+	if($httpcode != "200") {
+        return false; // error in API request
+    }
+
+    return $html;
+
 }
 
 function aws_signed_request($region, $params) {
 
-	$public_key = "PUBLIC_KEY";
-	$private_key = "PRIVATE_KEY";
+	$public_key = "AKIAIXOUOZRUWVDBGTKQ";
+	$private_key = "XLt48Y5zEAy4unzB8M00aa5pZGgzL5yF7pIizRAS";
+    $associate_tag  = "dejavan-20"; // Put your Affiliate Code here
 
 	$method = "GET";
 	$host = "ecs.amazonaws." . $region;
@@ -57,7 +70,7 @@ function aws_signed_request($region, $params) {
 	$uri = "/onca/xml";
 
 	$params["Service"] = "AWSECommerceService";
-	$params["AssociateTag"] = "affiliate-20"; // Put your Affiliate Code here
+	$params["AssociateTag"] = $associate_tag;
 	$params["AWSAccessKeyId"] = $public_key;
 	$params["Timestamp"] = gmdate("Y-m-d\TH:i:s\Z");
 	$params["Version"] = "2011-08-01";
@@ -79,9 +92,9 @@ function aws_signed_request($region, $params) {
 
 	$request = "http://" . $host . $uri . "?" . $canonicalized_query . "&Signature=" . $signature;
 	$response = getPage($request);
-
-	var_dump($response);
-
+    if($response == false){
+        return False;// error in API request
+    }
 	$pxml = @simplexml_load_string($response);
 	if ($pxml === False) {
 		return False;// no xml
