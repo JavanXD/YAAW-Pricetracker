@@ -7,8 +7,8 @@
  */
 header('Content-type:application/json;charset=utf-8');
 
-require_once("../functions/getAmazonASIN.php");
-require_once("../functions/getAmazonPrice.php");
+require_once("functions/getAmazonASIN.php");
+require_once("functions/getAmazonPrice.php");
 
 if (isset($_REQUEST['url']) && !isset($_REQUEST['asin']))
 {
