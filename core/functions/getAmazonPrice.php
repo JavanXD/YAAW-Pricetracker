@@ -3,6 +3,11 @@
 // Melde alle Fehler außer E_NOTICE
 error_reporting(E_ALL & ~E_NOTICE);
 
+//  REQUIREMENTS - cURL and CLI
+if ( !function_exists('curl_setopt') OR !function_exists('curl_setopt')  ) {
+    echo 'Requires cURL and CLI installations.' ; exit ;
+}
+
 function getAmazonPrice($region, $asin) {
 
 	$xml = aws_signed_request($region, array(
@@ -60,8 +65,8 @@ function getPage($url) {
 
 function aws_signed_request($region, $params) {
 
-	$public_key = "AKIAIXOUOZRUWVDBGTKQ";
-	$private_key = "XLt48Y5zEAy4unzB8M00aa5pZGgzL5yF7pIizRAS";
+	$public_key = "public_key";
+	$private_key = "private_key";
     $associate_tag  = "dejavan-20"; // Put your Affiliate Code here
 
 	$method = "GET";
