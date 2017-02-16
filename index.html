@@ -1,1 +1,31 @@
-<span style="color:red">Hello World</span>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>AmazonWatcher - Startseite</title>
+
+        <meta name="author" content="Fabian Hugler, Tamara Linsenbühler, Javan Rasokat, Raphael Schmitt">
+        <meta name="description" content="TODO: Beschreibung">
+
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="css/style.css">
+        <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <form>
+            <input id="email" name="email" type="text" placeholder="E-Mail Adresse" />
+            <input type="button" value="Produkte Anzeigen" onclick="listProducts(this.form)" />
+        </form>
+        <script type="text/javascript">
+            function listProducts(form) {
+                var email = form.email.value;
+                location.href = "list.html?email=" + email;
+            }
+
+        </script>
+    </body>
+</html>
