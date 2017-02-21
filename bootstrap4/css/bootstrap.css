@@ -398,12 +398,12 @@ blockquote {
 }
 
 a {
-  color: #0275d8;
+  color: #FF9900;
   text-decoration: none;
 }
 
 a:focus, a:hover {
-  color: #014c8c;
+  color: #FFBC57;
   text-decoration: underline;
 }
 
@@ -607,6 +607,7 @@ small,
 
 mark,
 .mark {
+  padding: 0.2em;
   padding: 0.2em;
   background-color: #fcf8e3;
 }
