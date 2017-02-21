@@ -4,26 +4,62 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>AmazonWatcher - Startseite</title>
+        <title>YAAW - Yet Another Amazon Watcher</title>
 
         <meta name="author" content="Fabian Hugler, Tamara Linsenbühler, Javan Rasokat, Raphael Schmitt">
-        <meta name="description" content="TODO: Beschreibung">
+        <meta name="description" content="YAAW ist ein Preisbeobachter für Amazon Produkte, der dich über positive Preisveränderungen deiner Wunschprodukte informiert.">
 
         <meta name="viewport" content="width=device-width">
 
-        <link rel="shortcut icon" href="img/favicon.ico">
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="bootstrap4/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="fontawesome/css/font-awesome.min.css" >
         <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="bootstrap4/js/bootstrap.min.js"></script>
     </head>
-    <body>
-        <form>
-            <input id="email" name="email" type="text" placeholder="E-Mail Adresse" />
-            <input type="button" value="Produkte Anzeigen" onclick="listProducts(this.form)" />
-        </form>
+    <body class="bg">
+    <nav class="navbar navbar-light bg-faded">
+        <a class="navbar-brand" href="javascript:location.reload()">
+            <img src="img/logo.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Yet Another Amazon Watcher
+        </a>
+    </nav>
+    <div class="container-fluid">
+        <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8 jumbotron app">
+            <div class="row container fill-height">
+                <div class="col-12">
+                    <h1 class="display-4">Amazon Price Tracker</h1>
+                    <p class="lead">YAAW ist ein Preisbeobachter für Amazon Produkte, der dich über positive Preisveränderungen deiner Wunschprodukte informiert.</p>
+                    <hr class="my-12">
+                    <div class="row">
+                        <p class="alert alert-info"><strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong> Um deine persönliche Produktliste anzulegen, trage deine E-Mail-Adresse unten ein.</p>
+                    </div>
+                    <div class="row">
+                        <form action="list.html" method="get" class="input-group">
+                            <input id="email" name="email" type="email" placeholder="Deine E-Mail-Adresse" class="form-control text-truncate form-control-lg"/>
+                            <input type="button" value="Anmelden" onclick="listProducts(this.form)" class="btn btn-lg btn-outline-warning input-group-addon"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted text-truncate text-right"><strong>&copy; <a href="https://www.yaaw.de/" class="text-uppercase text-warning">yaaw.de</a></strong> | <a href="https://javan.de/#contact" class="text-white">Impressum/Disclaimer</a> | <a href="https://github.com/JavanXD/AmazonWatcher" class="text-uppercase text-white"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a> </p>
+        </div>
+    </footer>
         <script type="text/javascript">
             function listProducts(form) {
                 var email = form.email.value;
-                location.href = "list.html?email=" + email;
+                if(email != "") {
+                    // if valid redirect
+                    if (document.getElementById("email").checkValidity()) {
+                        location.href = "list.html?email=" + email;
+                    }
+                }
             }
 
         </script>
