@@ -6,8 +6,9 @@
     | |     / ____ \   / ____ \     \  /\  /   
     |_|    /_/    \_\ /_/    \_\     \/  \/     
     
-    ![YAAW-LOGO](img/logo.jpeg)
 ```   
+![YAAW-LOGO](/img/logojpg.jpg)
+
 Try it [LIVE](https://www.yaaw.de/).
 
 ## YAAW -  Yet Another AmazonWatcher
