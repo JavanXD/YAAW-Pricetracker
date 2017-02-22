@@ -8,8 +8,8 @@
 
 function sendMail($to, $pSubject, $pMessage) {
 
-    $subject = 'Preiswächter - ' . $pSubject;
-    $from = 'amazon@javan.de';
+    $subject = 'YAAW - ' . $pSubject;
+    $from = 'pricetracker@yaaw.de';
 
     $message = '<html><body>';
     $message .= '<h1 style="color:#f40;">Hi!</h1>';

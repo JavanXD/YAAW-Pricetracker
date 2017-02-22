@@ -10,11 +10,11 @@ header('Content-type:application/json;charset=utf-8');
 require_once("../functions/getAmazonASIN.php");
 require_once("../functions/getAmazonPrice.php");
 
-if (isset($_REQUEST['url']) && !isset($_REQUEST['asin']))
+if (isset($_REQUEST['product_url']) && !isset($_REQUEST['asin']))
 {
-    $url = $_REQUEST['url']; //http://www.amazon.com/gp/product/1491910291/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1491910291&linkCode=as2&tag=achgu-20&linkId=A3CZKDVUDYL7PUFB
+    $url = $_REQUEST['product_url']; //http://www.amazon.com/gp/product/1491910291/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1491910291&linkCode=as2&tag=achgu-20&linkId=A3CZKDVUDYL7PUFB
     $asin = getAmazonASIN($url);
-} else if (!isset($_REQUEST['url']) && isset($_REQUEST['asin']))
+} else if (!isset($_REQUEST['product_url']) && isset($_REQUEST['asin']))
 {
     $asin = $_REQUEST['asin'];
 } else {
