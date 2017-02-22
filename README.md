@@ -4,8 +4,9 @@
   \ \_/ /     /  \       /  \     \ \  /\  / / 
    \   /     / /\ \     / /\ \     \ \/  \/ /  
     | |     / ____ \   / ____ \     \  /\  /   
-    |_|    /_/    \_\ /_/    \_\     \/  \/    
-                                               
+    |_|    /_/    \_\ /_/    \_\     \/  \/     
+    
+    ![YAAW-LOGO](img/logo.jpeg)
 ```   
 Try it [LIVE](https://www.yaaw.de/).
 
@@ -14,8 +15,15 @@ Amazon Preiswächter für Software-Engineering. Gruppe 2
 > YAAW ist ein Preisbeobachter für Amazon Produkte, der dich über positive Preisveränderungen deiner Wunschprodukte informiert.
 
 ## Verwendung
-Dokumente wie Mock-Ups, User-Storys etc. finden sich im `Doku` Verzeichnis.
-Das Back-End befindet sich im Ordner `core`. 
+- Für die Anmeldung wird lediglich die **E-Mail-Adresse** benötigt.<br>
+- Anschließend können Amazon-Produkte mit der Angabe ihrer **URL** gespeichert werden.<br>
+- Ein weiteres Eingabefeld ermöglicht einen bestimmten **Wunschpreis**, bzw. eine **Preisobergrenze** für das Produkt anzugeben. 
+- Sinkt der Preis unter diesen Wert, wird automatisch eine **Benachrichtigung** an die zugehörige E-Mail versendet.
+- Eine Auflistung der gespeicherten Artikel ermögllicht unter anderem eine schnelle Übersicht des **Preisverlaufes**. 
+
+## Struktur
+Dokumente wie Mock-Ups, User-Storys etc. finden sich im Verzeichnis **_Doku._**<br>
+Das Back-End befindet sich im Ordner **_core._**
 
 ## Gruppenmitglieder
 
