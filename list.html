@@ -81,7 +81,9 @@
                 </div>
                 <div class="row">
                     <form class="col-12 col-sm-10 col-md-10 col-lg-8 col-xl-6" onsubmit="return addProduct(this, event);">
-                        <input id="product_url" name="product_url" type="text" placeholder="Amazon Produkt-URL" class="form-control" />
+                        <div class="form-group">
+                            <input id="product_url" name="product_url" type="text" placeholder="Amazon Produkt-URL" class="form-control" />
+                        </div>
                         <label for="basic-price">Benachrichtigung ab einem Preis von</label>
                         <div class="input-group">
                             <input name="price" type="text" class="form-control" placeholder="0.00" aria-describedby="basic-price">
