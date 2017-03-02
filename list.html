@@ -7,9 +7,11 @@
     <title>YAAW - Produktliste</title>
 
     <meta name="author" content="Fabian Hugler, Tamara Linsenbühler, Javan Rasokat, Raphael Schmitt">
-    <meta name="description" content="YAAW ist ein Preisbeobachter für Amazon Produkte, der dich über positive Preisveränderungen deiner Wunschprodukte informiert.">
+    <meta name="description" content="YAAW ist ein Preisbeobachter für Amazon, der dich über positive Preisveränderungen deiner Wunschprodukte informiert.">
+    <meta name="robots" content="noindex" />
 
     <meta name="viewport" content="width=device-width">
+    <meta name="theme-color" content="#424143" />
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
@@ -18,14 +20,20 @@
     <link rel="stylesheet" href="fontawesome/css/font-awesome.min.css" >
     <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="bootstrap4/js/bootstrap.min.js"></script>
+
+    <!--Load the Google-Chart API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" async></script>
 </head>
 <body class="bg">
+<!-- AJAX Loader: shows that the page is still loading -->
+<div class="loader"><i class="loader_html fa-spin"></i></div>
+<!-- Navbar -->
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="javascript:location.reload()">
-        <img src="img/logo.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
         <span class="hidden-xs-down">Yet Another Amazon Watcher</span>
         <span class="hidden-md-up">YAAW</span>
     </a>
@@ -37,105 +45,73 @@
         </ul>
     </div>
 </nav>
+<!-- Content -->
 <div class="container-fluid">
-    <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8 jumbotron app">
+    <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8 jumbotron app">
         <div class="row container fill-height">
             <div class="col-12">
-                <div class="row">
-                    <h1 class="display-5">Produktliste</h1>
-                    <p class="lead">Deine persönlichen Preisüberwachungen kannst du hier überarbeiten.</p>
-                    <hr class="my-4">
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="card">
-                                <div class="card-header" role="tab" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                            Collapsible Group Item #1
-                                        </a>
-                                    </h5>
-                                </div>
-
-                                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-                                    <div class="card-block">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" role="tab" id="headingTwo">
-                                    <h5 class="mb-0">
-                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Collapsible Group Item #2
-                                        </a>
-                                    </h5>
-                                </div>
-                                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                    <div class="card-block">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" role="tab" id="headingThree">
-                                    <h5 class="mb-0">
-                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            Collapsible Group Item #3
-                                        </a>
-                                    </h5>
-                                </div>
-                                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-                                    <div class="card-block">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    </div>
-                                </div>
-                            </div>
+                <h1 class="display-5">Produktliste</h1>
+                <p class="lead">Deine Preisüberwachungen kannst du hier ansehen und <a href="#add">neue Produkte hinzufügen</a>.</p>
+                <hr class="my-4">
+                <div class="row" style="display:block;">
+                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="alert alert-info col-12">
+                            <strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong>
+                            Du hast noch kein Produkt hinzugefügt.
                         </div>
+                                <!-- <div class="card">
+                                     <div class="card-header" role="tab" id="headingOne">
+                                         <h5 class="mb-0">
+                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                 Collapsible Group Item #1
+                                             </a>
+                                         </h5>
+                                     </div>
+
+                                     <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                         <div class="card-block">
+                                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                         </div>
+                                     </div>
+                                 </div>
+                                 -->
                     </div>
                 </div>
                 <hr class="my-12">
                 <div class="row">
-                    <div class="col-12">
-                        <p class="alert alert-info"><strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong> Füge hier ein Amazon Produkt der Überwachung hinzu.</p>
+                    <div class="alert alert-info col-12">
+                        <strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong>
+                        Füge hier ein Amazon Produkt der Überwachung hinzu.
                     </div>
                 </div>
                 <div class="row">
-                    <form class="col-12 col-sm-10 col-md-10 col-lg-8 col-xl-6" onsubmit="addProduct(this.form)">
-                        <input id="product_link" name="product_link" type="text" placeholder="Amazon Produkt-URL" class="form-control" />
-                        <label for="basic-price">Benachrichtigung ab einem Preis von</label>
-                        <div class="input-group">
-                            <input name="price" type="text" class="form-control" placeholder="0.00" aria-describedby="basic-price">
-                            <span class="input-group-addon" id="basic-price">&euro;</span>
-                        </div>
-                        <input type="submit" value="Speichern" class="btn btn-primary form-control" />
-                    </form>
+                    <div id="add" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <form onsubmit="return addProduct(this, event);">
+                            <div class="row">
+                                <input id="product_url" name="product_url" type="text" placeholder="Amazon Produkt-URL" class="col-9 form-control" onkeyup="var str = this.value.split('http')[1];if(str !== undefined){this.value = 'http' + str;}" />
+                                <input role="button" type="submit" value="Speichern" class="col-3 btn btn-primary form-control" />
+                            </div>
+                            <div class="row">
+                                <label for="basic-price">Benachrichtigung ab einem Preis von</label>
+                                <div class="input-group">
+                                    <input name="price" type="text" class="form-control col-6" placeholder="0.00" aria-describedby="basic-price" onkeyup="this.value = this.value.replace(',', '.').replace(/[^0-9\.]+/g,'');">
+                                    <span class="input-group-addon" id="basic-price">&euro;</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Footer -->
 <footer class="footer">
     <div class="container">
-        <p class="text-muted text-truncate text-right"><strong>&copy; <a href="https://www.yaaw.de/" class="text-uppercase text-warning">yaaw.de</a></strong> | <a href="https://javan.de/#contact" class="text-white">Impressum/Disclaimer</a> | <a href="https://github.com/JavanXD/AmazonWatcher" class="text-uppercase text-white"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a> </p>
+        <p class="text-muted text-truncate text-right"><strong>&copy; <a href="https://www.yaaw.de/" class="text-uppercase text-warning" target="_blank">yaaw.de</a></strong> | <a href="impressum.html" class="text-white">Impressum & Datenschutz</a> | <a href="https://github.com/JavanXD/AmazonWatcher" class="text-uppercase text-white" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a> </p>
     </div>
 </footer>
-
-<script type="text/javascript">
-    function addProduct(form) {
-        var product_link = form.product_link.value;
-        //TODO Ajax request auf back-end
-
-        return false;
-    }
-    function removeProduct(product_asin) {
-        //TODO Ajax request auf back-end
-    }
-    /* Document is loaded */
-    $(function() {
-        //TODO Liste der Produkte laden
-    });
-</script>
+<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
