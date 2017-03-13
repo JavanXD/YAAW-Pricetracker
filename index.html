@@ -7,9 +7,10 @@
         <title>YAAW - Yet Another Amazon Watcher</title>
 
         <meta name="author" content="Fabian Hugler, Tamara Linsenbühler, Javan Rasokat, Raphael Schmitt">
-        <meta name="description" content="YAAW ist ein Preisbeobachter für Amazon Produkte, der dich über positive Preisveränderungen deiner Wunschprodukte informiert.">
+        <meta name="description" content="YAAW ist ein Preisbeobachter für Amazon, der dich über positive Preisveränderungen deiner Wunschprodukte informiert.">
 
         <meta name="viewport" content="width=device-width">
+        <meta name="theme-color" content="#424143" />
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="img/favicon.ico" type="image/x-icon">
@@ -23,25 +24,44 @@
     <body class="bg">
     <nav class="navbar navbar-light bg-faded">
         <a class="navbar-brand" href="javascript:location.reload()">
-            <img src="img/logo.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img src="img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
             Yet Another Amazon Watcher
         </a>
     </nav>
     <div class="container-fluid">
-        <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8 jumbotron app">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8 jumbotron app">
             <div class="row container fill-height">
                 <div class="col-12">
                     <h1 class="display-4">Amazon Price Tracker</h1>
-                    <p class="lead">YAAW ist ein Preisbeobachter für Amazon Produkte, der dich über positive Preisveränderungen deiner Wunschprodukte informiert.</p>
+                    <p class="lead">YAAW ist ein Preisbeobachter für Amazon, der dich über positive Preisveränderungen deiner Wunschprodukte informiert.</p>
                     <hr class="my-12">
                     <div class="row">
                         <p class="alert alert-info"><strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong> Um deine persönliche Produktliste anzulegen, trage deine E-Mail-Adresse unten ein.</p>
                     </div>
                     <div class="row">
-                        <form action="list.html" method="get" autocomplete="on" class="input-group" onsubmit="listProducts(this.form)">
+                        <form action="list.html" method="get" autocomplete="on" class="input-group" onsubmit="return listProducts(this)">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
                             <input id="email" name="email" type="email" placeholder="Deine E-Mail-Adresse" class="form-control text-truncate form-control-lg"/>
-                            <input type="submit" value="Anmelden" class="btn btn-lg btn-outline-warning input-group-addon"/>
+                            <input type="submit" value="Anmelden" class="btn btn-lg btn-outline-warning input-group-addon" role="button" />
                         </form>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <br >
+                            <p class="lead">Teile YAAW.de mit deinen Freunden!</p>
+                            <a href="WhatsApp://send?text=https://www.yaaw.de - Benachrichtigt dich über Preisveränderungen bei deinen Wunschprodukten. Garantierte Geldersparnis!" class="btn btn-success">
+                                <i class="fa fa-2x fa-whatsapp text-white" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.yaaw.de" target="_blank" class="btn btn-primary">
+                                <i class="fa fa-2x fa-facebook-f text-white" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://twitter.com/intent/tweet?url=https://www.yaaw.de" target="_blank" class="btn btn-info">
+                                <i class="fa fa-2x fa-twitter text-white" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://plus.google.com/share?url=https://www.yaaw.de" class="btn btn-danger" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                                <i class="fa fa-2x fa-google-plus text-white" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -49,7 +69,7 @@
     </div>
     <footer class="footer">
         <div class="container">
-            <p class="text-muted text-truncate text-right"><strong>&copy; <a href="https://www.yaaw.de/" class="text-uppercase text-warning">yaaw.de</a></strong> | <a href="https://javan.de/#contact" class="text-white">Impressum/Disclaimer</a> | <a href="https://github.com/JavanXD/AmazonWatcher" class="text-uppercase text-white"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a> </p>
+            <p class="text-muted text-truncate text-right"><strong>&copy; <a href="https://www.yaaw.de/" class="text-uppercase text-warning" target="_blank">yaaw.de</a></strong> | <a href="impressum.html" class="text-white">Impressum & Datenschutz</a> | <a href="https://github.com/JavanXD/AmazonWatcher" class="text-uppercase text-white" target="_blank"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a> </p>
         </div>
     </footer>
         <script type="text/javascript">
@@ -58,12 +78,35 @@
                 if(email != "") {
                     // if valid redirect
                     if (document.getElementById("email").checkValidity()) {
-                        location.href = "list.html?email=" + email;
-                        return false;
+                        return true;
                     }
                 }
+                return false;
             }
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for(var i = 0; i <ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+            /* Document is loaded */
+            $(function() {
 
+                var rememberedEmail = getCookie("email");
+                if(rememberedEmail != "undefined") {
+                    $('#email').val(rememberedEmail);
+                }
+
+            });
         </script>
     </body>
 </html>
