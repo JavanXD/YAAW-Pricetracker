@@ -8,8 +8,8 @@
 
 function sendMail($to, $pSubject, $pMessage) {
 
-    $subject = 'Preiswächter - ' . $pSubject;
-    $from = 'amazon@javan.de';
+    $subject = 'YAAW - ' . $pSubject;
+    $from = 'AmazonWatcher@yaaw.de';
 
     $message = '<html><body>';
     $message .= '<h1 style="color:#f40;">Hi!</h1>';
@@ -17,12 +17,13 @@ function sendMail($to, $pSubject, $pMessage) {
     $message .= '</body></html>';
 
     // To send HTML mail, the Content-type header must be set
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-    // Create email headers
-    $headers .= 'From: '.$from."\r\n".
-        'Reply-To: '.$from."\r\n" .
-        'X-Mailer: PHP/' . phpversion();
+    $headers = "MIME-Version: 1.0" . "\r\n";
+    $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
+    $headers .= "X-MSMail-Priority: High" . "\r\n";
+    $headers .= "From: $from" . "\r\n" .
+        "Reply-To: $from" . "\r\n" .
+        "Return-Path: $from" . "\r\n" .
+        "X-Mailer: PHP/" . phpversion();
     // Sending email
     return mail($to, $subject, $message, $headers);
 }
