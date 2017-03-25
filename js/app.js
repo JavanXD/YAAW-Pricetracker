@@ -70,13 +70,7 @@ function addProduct(form, event) {
             });
     }else{
         // Fehlerhafte Eingabe optisch markieren
-        if(productLink == "" && priceAlarm == ""){
-            // both fields are empty
-            $('input[name=product_url]').parent().addClass("has-danger");
-            $('input[name=price]').parent().addClass("has-danger");
-            alert("Produkt-URL und Wunsch-Preis eingeben.");
-        }
-        else if(productLink == ""){
+        if(productLink == ""){
             //product input is empty
             $('input[name=product_url]').parent().addClass("has-danger");
             alert("Produkt-URL eingeben.");
@@ -86,6 +80,11 @@ function addProduct(form, event) {
             $('input[name=price]').parent().addClass("has-danger");
             alert('Wunsch-Preis eingeben.');
 
+        }else if(productLink == "" && priceAlarm == ""){
+            // both fields are empty
+            $('input[name=product_url]').parent().addClass("has-danger");
+            $('input[name=price]').parent().addClass("has-danger");
+            alert("Produkt-URL und Wunsch-Preis eingeben.");
         }
     }
     return false;
