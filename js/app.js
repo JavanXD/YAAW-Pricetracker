@@ -40,53 +40,58 @@ function addProduct(form, event) {
     var productLink = form.product_url.value;
     var priceAlarm = form.price.value;
 
-    if (productLink != "" && priceAlarm != ""){
-    // Ajax request auf back-end
-        var addProduct = $.get(path + "addProduct.php", {
-            email: email,
-            product_url: productLink,
-            priceAlarm: priceAlarm
-        }, function (response) {
+    // remove warning
+    $('input[name=poduct_url]').parent().removeClass("has-danger");
+    $('input[name=price]').parent().removeClass("has-danger");
 
-            if(typeof response["error"] != "undefined"){
-                alert(response["error"]);
-            }else{
-                //addProductToLayout(response);
-                loadProductList();
-            }
-
-        })
-            .done(function () {
-                // make fields empty
-                form.product_url.value = "";
-                form.price.value = "";
-
-                // remove warning
-                $('input[name=poduct_url]').parent().removeClass("has-danger");
-                $('input[name=price]').parent().removeClass("has-danger");
-            })
-            .fail(function () {
-                alert("error");
-            });
-    }else{
         // Fehlerhafte Eingabe optisch markieren
-        if(productLink == ""){
+        if (productLink == "" && priceAlarm == ""){
+            // both fields are empty
+            $('input[name=product_url]').parent().addClass("has-danger");
+            $('input[name=price]').parent().addClass("has-danger");
+
+            alert("Produkt-URL und Wunsch-Preis eingeben.");
+        }
+        else if (productLink == ""){
             //product input is empty
             $('input[name=product_url]').parent().addClass("has-danger");
             alert("Produkt-URL eingeben.");
         }
-        else if(priceAlarm == ""){
+        else if (priceAlarm == ""){
             // price input is empty
             $('input[name=price]').parent().addClass("has-danger");
             alert('Wunsch-Preis eingeben.');
 
-        }else if(productLink == "" && priceAlarm == ""){
-            // both fields are empty
-            $('input[name=product_url]').parent().addClass("has-danger");
-            $('input[name=price]').parent().addClass("has-danger");
-            alert("Produkt-URL und Wunsch-Preis eingeben.");
+
+        }else{
+            // Ajax request auf back-end
+            var addProduct = $.get(path + "addProduct.php", {
+                email: email,
+                product_url: productLink,
+                priceAlarm: priceAlarm
+            }, function (response) {
+
+                if(typeof response["error"] != "undefined"){
+                    alert(response["error"]);
+                }else{
+                    //addProductToLayout(response);
+                    loadProductList();
+
+                    // make fields empty
+                    form.product_url.value = "";
+                    form.price.value = "";
+
+                    // remove warning
+                    $('input[name=poduct_url]').parent().removeClass("has-danger");
+                    $('input[name=price]').parent().removeClass("has-danger");
+                }
+
+            })
+                .fail(function () {
+                    alert("Fehler beim Speichern. Überprüfe deine Eingabefelder.");
+                });
         }
-    }
+
     return false;
 
 }
