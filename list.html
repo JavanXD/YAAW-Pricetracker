@@ -52,59 +52,63 @@
     </div>
 </nav>
 <!-- Content -->
-<div class="row container-fluid">
-    <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8 jumbotron app">
-        <div class="row container fill-height">
-            <div class="col-12">
-                <h1 class="display-5">Produktliste</h1>
-                <p class="lead">Deine Preisüberwachungen kannst du hier ansehen und <a href="#add">neue Produkte hinzufügen</a>.</p>
-                <hr class="my-4">
-                <div class="row" style="display:block;">
-                    <div id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="alert alert-info col-12">
-                            <strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong>
-                            Du hast noch kein Produkt hinzugefügt.
-                        </div>
-                                <!-- <div class="card">
-                                     <div class="card-header" role="tab" id="headingOne">
-                                         <h5 class="mb-0">
-                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                 Collapsible Group Item #1
-                                             </a>
-                                         </h5>
-                                     </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-11 col-lg-9 col-xl-8 jumbotron app">
+            <div class="row container fill-height">
+                <div class="col-12">
+                    <h1 class="display-5">Produktliste</h1>
+                    <p class="lead">Deine Preisüberwachungen kannst du hier ansehen und <a href="#add">neue Produkte hinzufügen</a>.</p>
+                    <hr class="my-4">
+                    <div class="row" style="display:block;">
+                        <div id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="alert alert-info col-12">
+                                <strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong>
+                                Du hast noch kein Produkt hinzugefügt.
+                            </div>
+                                    <!-- <div class="card">
+                                         <div class="card-header" role="tab" id="headingOne">
+                                             <h5 class="mb-0">
+                                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                     Collapsible Group Item #1
+                                                 </a>
+                                             </h5>
+                                         </div>
 
-                                     <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-                                         <div class="card-block">
-                                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                         <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                             <div class="card-block">
+                                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                             </div>
                                          </div>
                                      </div>
-                                 </div>
-                                 -->
+                                     -->
+                        </div>
                     </div>
-                </div>
-                <hr class="my-12">
-                <div class="row">
-                    <div class="alert alert-info col-12">
-                        <strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong>
-                        Füge hier ein Amazon Produkt der Überwachung hinzu.
+                    <hr class="my-12">
+                    <div class="row">
+                        <div class="alert alert-info col-12">
+                            <strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong>
+                            Füge hier ein Amazon Produkt der Überwachung hinzu.
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div id="add" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <form onsubmit="return addProduct(this, event);">
-                            <div class="row">
-                                <input id="product_url" name="product_url" type="text" placeholder="Amazon Produkt-URL" class="col-9 form-control" onkeyup="var str = this.value.split('http')[1];if(str !== undefined){this.value = 'http' + str;}" />
-                                <input role="button" type="submit" value="Speichern" class="col-3 btn btn-primary form-control" />
-                            </div>
-                            <div class="row">
-                                <label for="basic-price">Benachrichtigung ab einem Preis von</label>
-                                <div class="input-group">
-                                    <input name="price" type="text" class="form-control col-6" placeholder="0.00" aria-describedby="basic-price" onkeyup="this.value = this.value.replace(',', '.').replace(/[^0-9\.]+/g,'');">
-                                    <span class="input-group-addon" id="basic-price">&euro;</span>
+                    <div class="row">
+                        <div id="add" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <form onsubmit="return addProduct(this, event);">
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input id="product_url" name="product_url" type="text" placeholder="Amazon Produkt-URL" class="col-9 form-control" onkeyup="var str = this.value.split('http')[1];if(str !== undefined){this.value = 'http' + str;}" />
+                                        <input role="button" type="submit" value="Speichern" class="col-3 btn btn-primary input-group-addon" />
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                                <div class="row">
+                                    <label for="basic-price">Benachrichtigung ab einem Preis von</label>
+                                    <div class="input-group">
+                                        <input name="price" type="text" class="form-control col-6" placeholder="0.00" aria-describedby="basic-price" onkeyup="this.value = this.value.replace(',', '.').replace(/[^0-9\.]+/g,'');">
+                                        <span class="input-group-addon" id="basic-price">&euro;</span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

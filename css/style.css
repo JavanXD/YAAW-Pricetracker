@@ -10,11 +10,11 @@ body.bg {
     background-color: rgba(253,247,247,0.86);
     margin:0px auto;
     margin-top:20px;
-@brand-primary: darken(#428bca, 50%); // #337ab7
-@brand-success: #5cb85c;
-@brand-info:    #5bc0de;
-@brand-warning: #f0ad4e;
-@brand-danger:  #d9534f;
+    @brand-primary: darken(#428bca, 50%); // #337ab7
+    @brand-success: #5cb85c;
+    @brand-info:    #5bc0de;
+    @brand-warning: #f0ad4e;
+    @brand-danger:  #d9534f;
 }
 .fill-height {
     min-height: 300px;
