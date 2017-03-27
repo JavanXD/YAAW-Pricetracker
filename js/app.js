@@ -81,12 +81,14 @@ function addProduct(form, event) {
                     form.product_url.value = "";
                     form.price.value = "";
 
-                    // remove warning
-                    $('input[name=poduct_url]').parent().removeClass("has-danger");
-                    $('input[name=price]').parent().removeClass("has-danger");
                 }
 
             })
+                .done(function () {
+                    // remove warning
+                    $('input[name=poduct_url]').parent().removeClass("has-danger");
+                    $('input[name=price]').parent().removeClass("has-danger");
+                })
                 .fail(function () {
                     alert("Fehler beim Speichern. Überprüfe deine Eingabefelder.");
                 });

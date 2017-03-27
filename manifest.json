@@ -1,5 +1,5 @@
 {
-  "name": "YAAW.de - Amazon Watcher",
+  "name": "YAAW.de - AmazonWatcher",
   "description": "Yet Another Amazon Watcher.\nMore info here: https://www.yaaw.de",
   "short_name": "YAAW.de",
   "display": "standalone",
@@ -27,7 +27,7 @@
   "related_applications": [
     {
       "platform": "play",
-      "id": "de.yaaw"
+      "id": "de.javan.yaaw"
     }
   ]
 }
