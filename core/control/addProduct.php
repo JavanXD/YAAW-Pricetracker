@@ -42,7 +42,7 @@ if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_
         $UserID = $mysqli->insert_id;
 
         $subject = "Yet Another AmazonWatcher";
-        $message = 'Vielen Dank für deine Anmeldung auf <a href="https://www.yaaw.de/list.html?email='.$email.'"><strong>www.yaaw.de</strong></a>.';
+        $message = 'Vielen Dank f&uuml;r deine Anmeldung auf <a href="https://www.yaaw.de/list.html?email='.$email.'"><strong>www.yaaw.de</strong></a>.';
         sendMail($email, $subject, $message);
     }else{
         $row = $result->fetch_assoc();
