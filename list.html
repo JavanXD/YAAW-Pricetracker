@@ -31,6 +31,15 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" async></script>
 </head>
 <body class="bg">
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-96275605-1', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('send', 'pageview');
+</script>
 <!-- AJAX Loader: shows that the page is still loading -->
 <div class="loader"><i class="loader_html fa-spin"></i></div>
 <!-- Navbar -->
@@ -96,8 +105,8 @@
                             <form onsubmit="return addProduct(this, event);">
                                 <div class="row">
                                     <div class="input-group">
-                                        <input id="product_url" name="product_url" type="text" placeholder="Amazon Produkt-URL" class="col-9 form-control" onkeyup="var str = this.value.split('http')[1];if(str !== undefined){this.value = 'http' + str;}" />
-                                        <input role="button" type="submit" value="Speichern" class="col-3 btn btn-primary input-group-addon" />
+                                        <input id="product_url" name="product_url" type="text" placeholder="Amazon Produkt-URL" class="form-control" onkeyup="var str = this.value.split('http')[1];if(str !== undefined){this.value = 'http' + str;}" />
+                                        <input role="button" type="submit" value="Speichern" class="btn btn-primary input-group-addon" />
                                     </div>
                                 </div>
                                 <div class="row">
