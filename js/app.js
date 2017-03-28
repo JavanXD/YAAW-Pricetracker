@@ -122,12 +122,12 @@ function addProductToLayout(product) {
         favColor = "text-danger";
     }
     priceInfo = ''
-        +'Preishoch: <strong>' + product['Max'] + '</strong> <i class="fa fa-long-arrow-up text-danger" aria-hidden="true"></i>'
-        +' Preistief: <strong>' + product['Min'] + '</strong> <i class="fa fa-long-arrow-down text-success" aria-hidden="true"></i>'
-        +' Preismittel: <strong>' + product['AVG'] + '</strong> <b class="text-warning" aria-hidden="true">Ø</b>';
+        +'Preishoch: <strong>' + product['Max'] + '</strong> <i class="fa fa-long-arrow-up text-danger" aria-hidden="true"></i><br class="hidden-sm-up" /> '
+        +' Preistief: <strong>' + product['Min'] + '</strong> <i class="fa fa-long-arrow-down text-success" aria-hidden="true"></i><br class="hidden-sm-up" /> '
+        +' Preismittel: <strong>' + product['AVG'] + '</strong> <b class="text-warning" aria-hidden="true">Ø</b> ';
 
     var card = ''
-        +'<div class="card-header" role="tab" id="heading_' + product['TrackID'] + '"><h5 class="mb-0 text-truncate">'
+        +'<div class="card-header" role="tab" id="heading_' + product['TrackID'] + '"><h5 class="mb-0 text-truncate notranslate">'
         +'<button role="button" title="Beobachtung beenden" class="btn btn-outline-secondary fa fa-remove" onclick="removeProduct(' + product['TrackID'] + ')"></button> '
         +'<button role="button" title="Favorit markieren" class="btn btn-outline-secondary '+ favColor + ' fa fa-heart" onclick="favoriteTrack(' + product['TrackID'] + ')"></button> '
         +'<a data-toggle="collapse" data-parent="#accordion" href="#collapse_' + product['TrackID'] + '" aria-expanded="false" aria-controls="collapse_' + product['TrackID'] + '">'
@@ -140,7 +140,7 @@ function addProductToLayout(product) {
         +'<br /><i class="fa fa-bell" aria-hidden="true"></i> Benachrichtigung bei <strong>' + product['PriceAlarm'] + ' ' + product['ProductCode'] + '</strong></p>'
         +'<a href="https://anon.click/?' + decodeURIComponent(product['ProductUrl']) + '" target="_blank" class="btn btn-outline-secondary text-success pull-right"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Zum Angebot</a>'
         +'<p>' + priceInfo + '</p>'
-        +'<button onclick="loadChart(' + product['ProductID'] + ', ' + product['TrackID'] + ');$(this).hide();" role="button" class="fa fa-2x fa-line-chart btn btn-outline-secondary text-warning"></button>'
+        +'<button onclick="loadChart(' + product['ProductID'] + ', ' + product['TrackID'] + ');$(this).hide();" role="button" class="btn btn-outline-secondary text-warning"><i class="fa fa-line-chart" aria-hidden="true"></i> Preisverlauf anzeigen</button>'
 
         +'<div id="chart_' + product['TrackID'] + '" class="chart"></div>'
         +'</div></div>';
@@ -240,6 +240,11 @@ function loadChart(ProductID, TrackID) {
             height: 100,
             legend : { position: "none"},
             legend: 'none',
+            explorer: {
+                axis: 'horizontal',
+                keepInBounds: true,
+                maxZoomIn: 4.0
+            },
             colors: ['#FF9F0E']
         };
 
@@ -249,7 +254,11 @@ function loadChart(ProductID, TrackID) {
     }
 
     $(window).resize(function(){
-        drawChart(jsonData, ProductID, TrackID);
+
+        if ( document.getElementById('chart_' + TrackID).innerHTML.length > 10 )
+        {   // only if chart is opened
+            drawChart(jsonData, ProductID, TrackID);
+        }
     });
 
 }
