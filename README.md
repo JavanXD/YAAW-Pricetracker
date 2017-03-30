@@ -7,7 +7,7 @@
     |_|    /_/    \_\ /_/    \_\     \/  \/     
     
 ```   
-![YAAW-LOGO](img/Amazon Watcher3.png)
+![YAAW-LOGO](img/AmazonWatcher3.png)
 
 Try it [LIVE](https://www.yaaw.de/).
 
