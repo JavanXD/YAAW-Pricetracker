@@ -7,9 +7,11 @@
     |_|    /_/    \_\ /_/    \_\     \/  \/     
     
 ```   
-![YAAW-LOGO](/img/logojpg.jpg)
+![YAAW-LOGO](img/Amazon Watcher3.png)
 
 Try it [LIVE](https://www.yaaw.de/).
+
+See also our [Android-App](https://play.google.com/store/apps/details?id=de.javan.yaaw).
 
 ## YAAW -  Yet Another AmazonWatcher
 Amazon Preiswächter für Software-Engineering. Gruppe 2
@@ -24,7 +26,8 @@ Amazon Preiswächter für Software-Engineering. Gruppe 2
 
 ## Struktur
 Dokumente wie Mock-Ups, User-Storys etc. finden sich im Verzeichnis **_Doku._**<br>
-Das Back-End befindet sich im Ordner **_core._**
+Das Back-End befindet sich im Ordner **_core._**<br>
+Coding Style Guide: Mike Krüger 2003, Version 0.3
 
 ## Gruppenmitglieder
 
