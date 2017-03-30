@@ -102,17 +102,17 @@
                     </div>
                     <div class="row">
                         <div id="add" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                            <form onsubmit="return addProduct(this, event);">
+                            <form onsubmit="this.product_url.onchange();return addProduct(this, event);">
                                 <div class="row">
                                     <div class="input-group">
-                                        <input id="product_url" name="product_url" type="text" placeholder="Amazon Produkt-URL" class="form-control" onkeyup="var str = this.value.split('http')[1];if(str !== undefined){this.value = 'http' + str;}" />
+                                        <input id="product_url" name="product_url" type="text" placeholder="Amazon Produkt-URL" class="form-control" onchange="var str = this.value.split('http')[1];if(str !== undefined){this.value = 'http' + str;}" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();" />
                                         <input role="button" type="submit" value="Speichern" class="btn btn-primary input-group-addon" />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label for="basic-price">Benachrichtigung ab einem Preis von</label>
                                     <div class="input-group">
-                                        <input name="price" type="text" class="form-control col-6" placeholder="0.00" aria-describedby="basic-price" onkeyup="this.value = this.value.replace(',', '.').replace(/[^0-9\.]+/g,'');">
+                                        <input name="price" type="text" class="form-control col-6" placeholder="0.00" aria-describedby="basic-price" onchange="this.value = this.value.replace(',', '.').replace(/[^0-9\.]+/g,'');" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();" />
                                         <span class="input-group-addon" id="basic-price">&euro;</span>
                                     </div>
                                 </div>

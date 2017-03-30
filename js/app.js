@@ -2,6 +2,22 @@
  * Created by Javan on 21.02.2017.
  */
 
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -22,17 +38,32 @@ function isValidEmailAddress(emailAddress) {
 url = "https://www.yaaw.de";
 path = url + "/core/control/";
 email = decodeURIComponent($.urlParam('email'));
+urlIntent = decodeURIComponent($.urlParam('url'));
 
-if(email == "undefined") {
-    location.href = "index.html?noemail";
+if (email == "undefined") {
+    if (urlIntent != "undefined") {
+        email = getCookie("email");
+        if (email != "undefined") {
+            location.href = "list.html?email=" + email + "&url=" + urlIntent;
+        }else{
+            location.href = "index.html?nocookie";
+        }
+    }else{
+        location.href = "index.html?noemail";
+    }
 }
 
-if( !isValidEmailAddress( email ) ) {
+if ( !isValidEmailAddress( email ) ) {
     location.href = "index.html?notvalid";
 }
 
 // save email to cookie to remember login
 setCookie("email", email, 32);
+
+if (urlIntent != "undefined") {
+    $('#product_url').val(urlIntent);
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+}
 
 function addProduct(form, event) {
     event.preventDefault();
@@ -110,7 +141,7 @@ function removeProduct(TrackID) {
             .done(function () {
             })
             .fail(function () {
-                alert("error");
+                console.log("error: removeProduct");
             });
     }
 }
@@ -169,7 +200,7 @@ function loadProductList() {
 
         })
         .fail(function () {
-            alert("error");
+            console.log("error: loadProductList");
         });
 }
 
@@ -185,7 +216,7 @@ function favoriteTrack(TrackID) {
             loadProductList();
         })
         .fail(function() {
-            alert( "error" );
+            console.log("error: favoriteTrack");
         });
 }
 
