@@ -13,7 +13,8 @@ require_once ('../mysql.php');
 
 $list = Array();
 
-if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)) {
+if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL))
+{
     $email = $mysqli->real_escape_string($_REQUEST['email']);
 
     $sql = "SELECT Tracks.TrackID, Tracks.IsFavorite, Products.ProductID, Products.ProductTitle, Products.ProductUrl, Products.ProductImage, Products.ProductCode, Tracks.PriceStarted, Tracks.PriceAlarm 

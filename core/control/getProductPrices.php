@@ -11,7 +11,9 @@ header('Access-Control-Allow-Origin: *');
 
 require_once ('../mysql.php');
 
-if (isset($_REQUEST['ProductID'])) {
+if (isset($_REQUEST['ProductID']))
+{
+
     $ProductID = intval($_REQUEST['ProductID']);
 
     $sql = 'SELECT UNIX_TIMESTAMP(Prices.Time)*1000 AS "Time", Prices.Price

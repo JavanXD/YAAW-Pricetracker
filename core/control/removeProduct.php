@@ -12,6 +12,7 @@ header('Access-Control-Allow-Origin: *');
 require_once ('../mysql.php');
 
 if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL) && isset($_REQUEST['TrackID'])) {
+
     $email = $mysqli->real_escape_string($_REQUEST['email']);
     $TrackID = intval($_REQUEST['TrackID']);
 
@@ -20,4 +21,12 @@ if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_
                     WHERE U.Email = "' . $email. '"
                     AND T.TrackID = "' . $TrackID. '"');
 
+    if ($mysqli->affected_rows == 1)
+    {
+        $json["success"] = "true";
+    }else{
+        $json["success"] = "false";
+    }
+
+    echo json_encode( $json );
 }

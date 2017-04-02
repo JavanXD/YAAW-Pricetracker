@@ -53,6 +53,7 @@ if (email == "undefined") {
     }
 }
 
+//
 if ( !isValidEmailAddress( email ) ) {
     location.href = "index.html?notvalid";
 }
@@ -60,6 +61,7 @@ if ( !isValidEmailAddress( email ) ) {
 // save email to cookie to remember login
 setCookie("email", email, 32);
 
+// insert a product by sharing
 if (urlIntent != "undefined") {
     $('#product_url').val(urlIntent);
     $("html, body").animate({ scrollTop: $(document).height() }, "slow");
@@ -284,6 +286,7 @@ function loadChart(ProductID, TrackID) {
         chart.draw(data, options);
     }
 
+    // draw chart again if window is resized
     $(window).resize(function(){
 
         if ( document.getElementById('chart_' + TrackID).innerHTML.length > 10 )
