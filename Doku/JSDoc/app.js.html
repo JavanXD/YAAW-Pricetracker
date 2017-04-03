@@ -1,4 +1,32 @@
-/** 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: app.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: app.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** 
  * Diese JavaScript Datei beinhaltet die AJAX-Kommunikation.
  * 
  * @projectname YAAW.de
@@ -17,7 +45,7 @@ function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
+    for(var i = 0; i &lt;ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
@@ -49,7 +77,7 @@ function setCookie(cname, cvalue, exdays) {
  * @param {string} name - Name des Parameters.
  */
 $.urlParam = function(name) {
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
     return (results != null) ? results[1] || 0 : "undefined";
 }
 
@@ -59,7 +87,7 @@ $.urlParam = function(name) {
  * @param {string} emailAddress - E-Mail-Adresse.
  */
 function isValidEmailAddress(emailAddress) {
-    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+    var pattern = /^([a-z\d!#$%&amp;'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&amp;'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
     return pattern.test(emailAddress);
 }
 
@@ -72,7 +100,7 @@ if (email == "undefined") {
     if (urlIntent != "undefined") {
         email = getCookie("email");
         if (email != "undefined") {
-            location.href = "list.html?email=" + email + "&url=" + urlIntent;
+            location.href = "list.html?email=" + email + "&amp;url=" + urlIntent;
         }else{
             location.href = "index.html?nocookie";
         }
@@ -115,7 +143,7 @@ function addProduct(form, event) {
     $('input[name=price]').parent().removeClass("has-danger");
 
         // Fehlerhafte Eingabe optisch markieren
-        if (productLink == "" && priceAlarm == ""){
+        if (productLink == "" &amp;&amp; priceAlarm == ""){
             // both fields are empty
             $('input[name=product_url]').parent().addClass("has-danger");
             $('input[name=price]').parent().addClass("has-danger");
@@ -203,30 +231,30 @@ function addProductToLayout(product) {
         favColor = "text-danger";
     }
     priceInfo = ''
-        +'Preishoch: <strong>' + product['Max'] + '</strong> <i class="fa fa-long-arrow-up text-danger" aria-hidden="true"></i><br class="hidden-sm-up" /> '
-        +' Preistief: <strong>' + product['Min'] + '</strong> <i class="fa fa-long-arrow-down text-success" aria-hidden="true"></i><br class="hidden-sm-up" /> '
-        +' Preismittel: <strong>' + product['AVG'] + '</strong> <b class="text-warning" aria-hidden="true">Ø</b> ';
+        +'Preishoch: &lt;strong>' + product['Max'] + '&lt;/strong> &lt;i class="fa fa-long-arrow-up text-danger" aria-hidden="true">&lt;/i>&lt;br class="hidden-sm-up" /> '
+        +' Preistief: &lt;strong>' + product['Min'] + '&lt;/strong> &lt;i class="fa fa-long-arrow-down text-success" aria-hidden="true">&lt;/i>&lt;br class="hidden-sm-up" /> '
+        +' Preismittel: &lt;strong>' + product['AVG'] + '&lt;/strong> &lt;b class="text-warning" aria-hidden="true">Ø&lt;/b> ';
 
     var card = ''
-        +'<div class="card-header" role="tab" id="heading_' + product['TrackID'] + '"><h5 class="mb-0 text-truncate notranslate">'
-        +'<button role="button" title="Beobachtung beenden" class="btn btn-outline-secondary fa fa-remove" onclick="removeProduct(' + product['TrackID'] + ')"></button> '
-        +'<button role="button" title="Favorit markieren" class="btn btn-outline-secondary '+ favColor + ' fa fa-heart" onclick="favoriteTrack(' + product['TrackID'] + ')"></button> '
-        +'<a data-toggle="collapse" data-parent="#accordion" href="#collapse_' + product['TrackID'] + '" aria-expanded="false" aria-controls="collapse_' + product['TrackID'] + '">'
+        +'&lt;div class="card-header" role="tab" id="heading_' + product['TrackID'] + '">&lt;h5 class="mb-0 text-truncate notranslate">'
+        +'&lt;button role="button" title="Beobachtung beenden" class="btn btn-outline-secondary fa fa-remove" onclick="removeProduct(' + product['TrackID'] + ')">&lt;/button> '
+        +'&lt;button role="button" title="Favorit markieren" class="btn btn-outline-secondary '+ favColor + ' fa fa-heart" onclick="favoriteTrack(' + product['TrackID'] + ')">&lt;/button> '
+        +'&lt;a data-toggle="collapse" data-parent="#accordion" href="#collapse_' + product['TrackID'] + '" aria-expanded="false" aria-controls="collapse_' + product['TrackID'] + '">'
         +'' + product['ProductTitle'] + ''
-        +'</a></h5></div>'
-        +'<div id="collapse_' + product['TrackID'] + '" class="collapse" role="tabpanel" aria-labelledby="heading_' + product['TrackID'] + '"><div class="card-block">'
-        +'<img src="' + product['ProductImage'] + '" alt="" class="pull-left amazon-image" />'
-        +'<a href="https://anon.click/?' + decodeURIComponent(product['ProductUrl']) + '" target="_blank" class="text-muted">' + product['ProductTitle'] + '</a>'
-        +'<p><i class="fa fa-play" aria-hidden="true"></i> Preis gestartet bei <strong>' + product['PriceStarted'] + ' ' + product['ProductCode'] + '</strong> '
-        +'<br /><i class="fa fa-bell" aria-hidden="true"></i> Benachrichtigung bei <strong>' + product['PriceAlarm'] + ' ' + product['ProductCode'] + '</strong></p>'
-        +'<a href="https://anon.click/?' + decodeURIComponent(product['ProductUrl']) + '" target="_blank" class="btn btn-outline-secondary text-success pull-right"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Zum Angebot</a>'
-        +'<p>' + priceInfo + '</p>'
-        +'<button onclick="loadChart(' + product['ProductID'] + ', ' + product['TrackID'] + ');$(this).hide();" role="button" class="btn btn-outline-secondary text-warning"><i class="fa fa-line-chart" aria-hidden="true"></i> Preisverlauf anzeigen</button>'
+        +'&lt;/a>&lt;/h5>&lt;/div>'
+        +'&lt;div id="collapse_' + product['TrackID'] + '" class="collapse" role="tabpanel" aria-labelledby="heading_' + product['TrackID'] + '">&lt;div class="card-block">'
+        +'&lt;img src="' + product['ProductImage'] + '" alt="" class="pull-left amazon-image" />'
+        +'&lt;a href="https://anon.click/?' + decodeURIComponent(product['ProductUrl']) + '" target="_blank" class="text-muted">' + product['ProductTitle'] + '&lt;/a>'
+        +'&lt;p>&lt;i class="fa fa-play" aria-hidden="true">&lt;/i> Preis gestartet bei &lt;strong>' + product['PriceStarted'] + ' ' + product['ProductCode'] + '&lt;/strong> '
+        +'&lt;br />&lt;i class="fa fa-bell" aria-hidden="true">&lt;/i> Benachrichtigung bei &lt;strong>' + product['PriceAlarm'] + ' ' + product['ProductCode'] + '&lt;/strong>&lt;/p>'
+        +'&lt;a href="https://anon.click/?' + decodeURIComponent(product['ProductUrl']) + '" target="_blank" class="btn btn-outline-secondary text-success pull-right">&lt;i class="fa fa-shopping-cart" aria-hidden="true">&lt;/i> Zum Angebot&lt;/a>'
+        +'&lt;p>' + priceInfo + '&lt;/p>'
+        +'&lt;button onclick="loadChart(' + product['ProductID'] + ', ' + product['TrackID'] + ');$(this).hide();" role="button" class="btn btn-outline-secondary text-warning">&lt;i class="fa fa-line-chart" aria-hidden="true">&lt;/i> Preisverlauf anzeigen&lt;/button>'
 
-        +'<div id="chart_' + product['TrackID'] + '" class="chart"></div>'
-        +'</div></div>';
+        +'&lt;div id="chart_' + product['TrackID'] + '" class="chart">&lt;/div>'
+        +'&lt;/div>&lt;/div>';
 
-    $("#accordion").append('<div class="card" id="card_' + product['TrackID'] + '">' + card + '</div>');
+    $("#accordion").append('&lt;div class="card" id="card_' + product['TrackID'] + '">' + card + '&lt;/div>');
 }
 
  /**
@@ -358,4 +386,26 @@ $(document).on({
     ajaxStop: function () {
         $(".loader").hide('slow');
     }
-});
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addProduct">addProduct</a></li><li><a href="global.html#addProductToLayout">addProductToLayout</a></li><li><a href="global.html#favoriteTrack">favoriteTrack</a></li><li><a href="global.html#getCookie">getCookie</a></li><li><a href="global.html#isValidEmailAddress">isValidEmailAddress</a></li><li><a href="global.html#loadChart">loadChart</a></li><li><a href="global.html#loadProductList">loadProductList</a></li><li><a href="global.html#removeProduct">removeProduct</a></li><li><a href="global.html#setCookie">setCookie</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0-dev</a> on Mon Apr 03 2017 11:59:16 GMT+0300 (MSK)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
