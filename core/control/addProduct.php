@@ -36,6 +36,7 @@ if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_
 
     $result = $mysqli->query("SELECT UserID FROM Users WHERE Email='".$email."' LIMIT 0,1");
     $row_cnt = $result->num_rows;
+
     if($row_cnt == 0) {
         // first time created
         $mysqli->query("INSERT INTO Users (Email) VALUES ('".$email."')");
@@ -48,21 +49,22 @@ if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_
         $row = $result->fetch_assoc();
         $UserID = $row["UserID"];
     }
-        $product = getAmazonPrice($region, $ASIN);
-        if ($product != null && $product != false && $product['price'] != 0.00) {
-            $mysqli->query("INSERT INTO Products (ASIN, Region, ProductCode, ProductTitle, ProductUrl, ProductImage) VALUES ('" . $ASIN . "', '" . $region . "', '" . $mysqli->real_escape_string($product['code']) . "', '" . $mysqli->real_escape_string($product['title']) . "', '" . $mysqli->real_escape_string($product['url']) . "', '" . $mysqli->real_escape_string($product['image']) . "') ON DUPLICATE KEY UPDATE ProductID=LAST_INSERT_ID(`ProductID`)");
-            $ProductID = $mysqli->insert_id;
-            if ($ProductID > 0) {
-                $mysqli->query("INSERT INTO Prices (ProductID, Price) VALUES ( '" . $ProductID . "', '" . $product['price'] . "')");
-                $mysqli->query("INSERT INTO Tracks (UserID, ProductID, PriceStarted, PriceAlarm) VALUES ('" . $UserID . "', '" . $ProductID . "', '" . $product['price'] . "', '" . $priceAlarm . "')");
-                echo json_encode($product);
-                exit;
-            } else {
-                $error["error"] = "Fehler beim Erstellen des Produkts.";
-            }
+
+    $product = getAmazonPrice($region, $ASIN);
+    if ($product != null && $product != false && $product['price'] != 0.00) {
+        $mysqli->query("INSERT INTO Products (ASIN, Region, ProductCode, ProductTitle, ProductUrl, ProductImage) VALUES ('" . $ASIN . "', '" . $region . "', '" . $mysqli->real_escape_string($product['code']) . "', '" . $mysqli->real_escape_string($product['title']) . "', '" . $mysqli->real_escape_string($product['url']) . "', '" . $mysqli->real_escape_string($product['image']) . "') ON DUPLICATE KEY UPDATE ProductID=LAST_INSERT_ID(`ProductID`)");
+        $ProductID = $mysqli->insert_id;
+        if ($ProductID > 0) {
+            $mysqli->query("INSERT INTO Prices (ProductID, Price) VALUES ( '" . $ProductID . "', '" . $product['price'] . "')");
+            $mysqli->query("INSERT INTO Tracks (UserID, ProductID, PriceStarted, PriceAlarm) VALUES ('" . $UserID . "', '" . $ProductID . "', '" . $product['price'] . "', '" . $priceAlarm . "')");
+            echo json_encode($product);
+            exit;
         } else {
-            $error["error"] = "Ups! Versuche es bitte gleich nochmal.";
+            $error["error"] = "Fehler beim Erstellen des Produkts.";
         }
+    } else {
+        $error["error"] = "Ups! Versuche es bitte gleich nochmal.";
+    }
 
 }else{
     $error["error"] = "Fehlende oder falsche Parameter.";
