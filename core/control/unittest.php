@@ -10,9 +10,19 @@ require_once ("../functions/getAmazonRegion.php");
 require_once ('../mysql.php');
 
 /**
+ * Test php functions
+ */
+if ( !function_exists( 'mail' ) )
+{
+    echo 'mail() has been disabled';
+}
+if ( !function_exists('curl_setopt') OR !function_exists('curl_setopt')  ) {
+    echo 'Requires cURL and CLI installations.' ; exit ;
+}
+
+/**
  * Test methods getAmazonASIN, getAmazonRegion, getAmazonPrice
  */
-
 // repeat your tests
 for ($i = 0; $i < 1; $i++)
 {
@@ -32,7 +42,9 @@ for ($i = 0; $i < 1; $i++)
     sleep(1);
 }
 
-// test sending mail
+/**
+ * Test sending mail
+ */
 // To send HTML mail, the Content-type header must be set
 $from = 'AmazonWatcher@yaaw.de';
 $headers = "MIME-Version: 1.0" . "\r\n";

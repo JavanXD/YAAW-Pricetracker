@@ -60,25 +60,30 @@ if ($result->num_rows > 0)
             $PricesID = $mysqli->insert_id;
             echo "<p>" . $row["ProductID"] . "/" . $row["TrackID"] . "  - Neuen Preis hinzugefügt: " . $product['price'] . " (" . $row['Email'] . ")</p>";
 
-            // sende Email nach erreichen des Wunschpreises
+            // send email after reaching the desired price
             if($product['price'] <= $row["PriceAlarm"])
             {
-                // sende Email nur alle 24h und wenn Benachrichtigungen aktiviert sind
-                if ($row["LastEmail"] < time()-24*60*60 && $row["IsMuted"] != 0)
+                // send email only every 24h and if notifications are activated
+                if ($row["LastEmail"] < time()-24*60*60)
                 {
-                    // sende Email nur wenn sich der Preis von der letzten Email geändert hat
-                    if ($product['price'] != $row["LastEmailPrice"])
+                    // send email if it is not muted
+                    if ($row["IsMuted"] != 0)
                     {
-                        $message = createMessage($row, $product);
-                        sendMail($row["Email"], $row["ProductTitle"], $message);
-                        echo "<p>" . $product['price'] . " <= " . $row["PriceAlarm"] . " - Sende Email an " . $row['Email'] . "</p>";
-                        $mysqli->query("UPDATE Tracks SET LastEmail=UNIX_TIMESTAMP(), LastEmailPrice='" . $product['price'] . "' WHERE TrackID='" . $row["TrackID"] . "'");
-                    }else{
-                        echo "<p>" . $product['price'] . " <= " . $row["PriceAlarm"] . " - Email wurde bereits versandt. (" . $row['Email'] . ")</p>";
+                        // send email only if the price of the last email has changed
+                        if ($product['price'] != $row["LastEmailPrice"])
+                        {
+                            $message = createMessage($row, $product);
+                            sendMail($row["Email"], $row["ProductTitle"], $message);
+                            echo "<p>" . $product['price'] . " <= " . $row["PriceAlarm"] . " - Sende Email an " . $row['Email'] . "</p>";
+                            $mysqli->query("UPDATE Tracks SET LastEmail=UNIX_TIMESTAMP(), LastEmailPrice='" . $product['price'] . "' WHERE TrackID='" . $row["TrackID"] . "'");
+                        } else {
+                            echo "<p>" . $product['price'] . " <= " . $row["PriceAlarm"] . " - Email wurde mit diesem Preis bereits versandt. (" . $row['Email'] . ")</p>";
+                        }
+                    } else {
+                        echo "<p>" . $product['price'] . " <= " . $row["PriceAlarm"] . " - Benachrichtigung ist stummgeschalten. (" . $row['Email'] . ")</p>";
                     }
-
                 }else{
-                    echo "<p>" . $product['price'] . " <= " . $row["PriceAlarm"] . " - Email wurde bereits versandt. (" . $row['Email'] . ")</p>";
+                    echo "<p>" . $product['price'] . " <= " . $row["PriceAlarm"] . " - Email wurde bereits im vorgegebenen Zeitraum versandt. (" . $row['Email'] . ")</p>";
                 }
             }
         }else {
