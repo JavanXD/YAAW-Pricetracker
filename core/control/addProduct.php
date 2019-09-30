@@ -17,11 +17,12 @@ require_once ('../mysql.php');
 
 if (isset($_REQUEST['product_url']) && !isset($_REQUEST['asin']))
 {
-    $url = $_REQUEST['product_url']; //http://www.amazon.com/gp/product/1491910291/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1491910291&linkCode=as2&tag=achgu-20&linkId=A3CZKDVUDYL7PUFB
+    $url = $_REQUEST['product_url']; // e.g. https://www.amazon.com/gp/product/1491910291/
     $ASIN = getAmazonASIN($url);
     $region = getAmazonRegion($url);
 } else if (!isset($_REQUEST['product_url']) && isset($_REQUEST['asin']))
 {
+    $region = "de";
     $ASIN = $_REQUEST['asin'];
 } else {
     $error["error"] = "Fehlende Parameter.";
@@ -43,7 +44,8 @@ if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_
         $UserID = $mysqli->insert_id;
 
         $subject = "Yet Another AmazonWatcher";
-        $message = 'Vielen Dank f&uuml;r deine Anmeldung auf <a href="https://www.yaaw.de/list.html?email='.$email.'"><strong>www.yaaw.de</strong></a>.';
+        $message = '<p>Vielen Dank f&uuml;r Deine Anmeldung auf <a href="https://www.yaaw.de/list.html?email='.$email.'"><strong>www.YAAW.de</strong></a>.</p>';
+        $message .= '<p>Das warst nicht Du? Dann schreib uns eine Mail indem du auf diese Email antwortest.</p>';
         sendMail($email, $subject, $message);
     }else{
         $row = $result->fetch_assoc();

@@ -17,7 +17,7 @@ if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_
 {
     $email = $mysqli->real_escape_string($_REQUEST['email']);
 
-    $sql = "SELECT Tracks.TrackID, Tracks.IsFavorite, Products.ProductID, Products.ProductTitle, Products.ProductUrl, Products.ProductImage, Products.ProductCode, Tracks.PriceStarted, Tracks.PriceAlarm 
+    $sql = "SELECT Tracks.TrackID, Tracks.IsMuted, Tracks.IsFavorite, Products.ProductID, Products.ProductTitle, Products.ProductUrl, Products.ProductImage, Products.ProductCode, Tracks.PriceStarted, Tracks.PriceAlarm 
             FROM Tracks, Users, Products
             WHERE Users.Email = '" . $email . "'
             AND Products.ProductID = Tracks.ProductID

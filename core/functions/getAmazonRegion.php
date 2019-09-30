@@ -13,6 +13,6 @@ function getAmazonRegion($url){
     }else if (mb_strpos($host, ".de") !== false) {
         return "de";
     }else{
-        return "com";
+        return "de";
     }
 }

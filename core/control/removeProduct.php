@@ -28,5 +28,11 @@ if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_
         $json["success"] = "false";
     }
 
-    echo json_encode( $json );
+    // Send Result
+    if (isset($_REQUEST['directAccess'])) {
+        header("Location: https://www.yaaw.de/list.html?email=" . urlencode($email));
+        exit;
+    } else {
+        echo json_encode( $json );
+    }
 }

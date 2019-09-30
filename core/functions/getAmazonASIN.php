@@ -20,3 +20,4 @@ function getAmazonASIN($url) {
     }
     return $asin;
 }
+

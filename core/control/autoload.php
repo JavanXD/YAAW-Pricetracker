@@ -59,18 +59,18 @@ if ($result->num_rows > 0)
             $mysqli->query("INSERT INTO Prices (ProductID, Price) VALUES ('" . $row["ProductID"] . "', '" . $product['price'] ."')");
             $PricesID = $mysqli->insert_id;
             echo "<p>" . $row["ProductID"] . "/" . $row["TrackID"] . "  - Neuen Preis hinzugefügt: " . $product['price'] . " (" . $row['Email'] . ")</p>";
+
             // sende Email nach erreichen des Wunschpreises
             if($product['price'] <= $row["PriceAlarm"])
             {
-                // sende Email nur alle 3h
-                if ($row["LastEmail"] < time()-3*60*60)
+                // sende Email nur alle 24h und wenn Benachrichtigungen aktiviert sind
+                if ($row["LastEmail"] < time()-24*60*60 && $row["IsMuted"] == TRUE)
                 {
                     // sende Email nur wenn sich der Preis von der letzten Email geändert hat
                     if ($product['price'] != $row["LastEmailPrice"])
                     {
-                        $subject = $row["ProductTitle"];
-                        $message = '<a href="' . $row["ProductUrl"] . '">' . $row["ProductTitle"] . '</a> wurde günstiger und ist nun für einen Preis von <strong>' . $product['price'] . '</strong> zu haben.';
-                        sendMail($row["Email"], $subject, $message);
+                        $message = createMessage($row, $product);
+                        sendMail($row["Email"], $row["ProductTitle"], $message);
                         echo "<p>" . $product['price'] . " <= " . $row["PriceAlarm"] . " - Sende Email an " . $row['Email'] . "</p>";
                         $mysqli->query("UPDATE Tracks SET LastEmail=UNIX_TIMESTAMP(), LastEmailPrice='" . $product['price'] . "' WHERE TrackID='" . $row["TrackID"] . "'");
                     }else{

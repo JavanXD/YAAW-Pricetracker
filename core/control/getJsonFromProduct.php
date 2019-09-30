@@ -8,15 +8,18 @@
 header('Content-type:application/json;charset=utf-8');
 
 require_once("../functions/getAmazonASIN.php");
+require_once("../functions/getAmazonRegion.php");
 require_once("../functions/getAmazonPrice.php");
 
 if (isset($_REQUEST['product_url']) && !isset($_REQUEST['asin']))
 {
-    $url = $_REQUEST['product_url']; //http://www.amazon.com/gp/product/1491910291/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1491910291&linkCode=as2&tag=achgu-20&linkId=A3CZKDVUDYL7PUFB
+    $url = $_REQUEST['product_url'];
     $asin = getAmazonASIN($url);
+    $region = getAmazonRegion($url);
 } else if (!isset($_REQUEST['product_url']) && isset($_REQUEST['asin']))
 {
     $asin = $_REQUEST['asin'];
+    $region = "de";
 } else {
     $error["error"] = "para error";
     echo json_encode( $error );
@@ -28,7 +31,7 @@ if (isset($_REQUEST['product_url']) && !isset($_REQUEST['asin']))
 if (strlen($asin) == 10)
 {
     // Region code and Product ASIN
-    $response = getAmazonPrice("com", $asin);
+    $response = getAmazonPrice($region, $asin);
     echo json_encode($response);
 } else {
     $error["error"] = "asin error";
