@@ -1,7 +1,7 @@
 
 
-# YAAW -  Yet Another AmazonWatcher
-YAAW is a price monitoring service for Amazon products that informs you about positive price changes of your desired products.
+# YAAW.de -  Yet Another AmazonWatcher
+YAAW.de is a price monitoring service for Amazon products that informs you about positive price changes of your desired products.
 
 ![YAAW-LOGO](assets/img/AmazonWatcher3.png)
 

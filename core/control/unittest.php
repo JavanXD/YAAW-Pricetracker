@@ -1,6 +1,8 @@
 <?php
 
-header('Content-type:application/json;charset=utf-8');
+error_reporting(E_ALL);
+
+header('Content-type:text/plain;charset=utf-8');
 
 require_once ("../functions/getAmazonASIN.php");
 require_once ("../functions/getAmazonPrice.php");
@@ -29,3 +31,16 @@ for ($i = 0; $i < 1; $i++)
     // wait before next test
     sleep(1);
 }
+
+// test sending mail
+// To send HTML mail, the Content-type header must be set
+$from = 'AmazonWatcher@yaaw.de';
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
+$headers .= "X-MSMail-Priority: High" . "\r\n";
+$headers .= "From: $from" . "\r\n" .
+    "Reply-To: $from" . "\r\n" .
+    "Return-Path: $from" . "\r\n" .
+    "X-Mailer: PHP/" . phpversion();
+$mailed = mail("kontakt@javan.de", "Unittest - Success", "Yes, someone did a unittest.php", $headers);
+var_dump($mailed);

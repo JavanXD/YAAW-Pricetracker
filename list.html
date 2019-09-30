@@ -105,7 +105,7 @@
                             <form onsubmit="this.product_url.onchange();return addProduct(this, event);">
                                 <div class="row">
                                     <div class="input-group">
-                                        <input id="product_url" name="product_url" type="text" placeholder="Amazon Produkt-URL" class="form-control" onchange="var str = this.value.split('http')[1];if(str !== undefined){this.value = 'http' + str;}" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();" />
+                                        <input id="product_url" name="product_url" type="text" placeholder="Amazon.de Produkt-URL (https://www.amazon.de/dp/B079QHMFWC/...)" class="form-control" onchange="var str = this.value.split('http')[1];if(str !== undefined){this.value = 'http' + str;}" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();" />
                                         <input role="button" type="submit" value="Speichern" class="btn btn-primary input-group-addon" />
                                     </div>
                                 </div>

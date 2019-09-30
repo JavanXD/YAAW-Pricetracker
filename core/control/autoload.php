@@ -64,7 +64,7 @@ if ($result->num_rows > 0)
             if($product['price'] <= $row["PriceAlarm"])
             {
                 // sende Email nur alle 24h und wenn Benachrichtigungen aktiviert sind
-                if ($row["LastEmail"] < time()-24*60*60 && $row["IsMuted"] == TRUE)
+                if ($row["LastEmail"] < time()-24*60*60 && $row["IsMuted"] != 0)
                 {
                     // sende Email nur wenn sich der Preis von der letzten Email geändert hat
                     if ($product['price'] != $row["LastEmailPrice"])
