@@ -1,6 +1,6 @@
 <?php
 
-include_once ('../secrets.php');
+require_once ('../secrets.php');
 
 // Melde alle Fehler außer E_NOTICE
 error_reporting(E_ALL & ~E_NOTICE);
@@ -66,12 +66,9 @@ function getPage($url) {
 }
 
 function aws_signed_request($region, $params) {
+    global $associate_tag, $public_key, $private_key;
 
-	$public_key = $GLOBALS["public_key"];
-	$private_key = $GLOBALS["private_key"];
-    $associate_tag  = $GLOBALS["associate_tag"];
-
-	$method = "GET";
+    $method = "GET";
 	$host = "ecs.amazonaws." . $region;
 	$host = "webservices.amazon." . $region;
 	$uri = "/onca/xml";

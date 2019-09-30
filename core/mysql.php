@@ -6,9 +6,10 @@
  * Time: 16:37 Uhr
  */
 
-include_once ('./secrets.php');
+require_once ('secrets.php');
 
-$mysqli = mysqli_connect($GLOBALS["host"], $GLOBALS["user"], $GLOBALS["password"], $GLOBALS["database"], 3306);
+$mysqli = mysqli_connect($host, $user, $password, $database, 3306);
+unset ($user, $password);
 
 // Check connection
 if (mysqli_connect_errno())
