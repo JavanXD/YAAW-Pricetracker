@@ -32,7 +32,9 @@ YAAW is a price monitoring service for Amazon products that informs you about po
 * jQuery, Fontawesome and Bootstrap4 used for front-end
 
 ## Contribute
-I'm happy about pull requests. I do not actively develop the project because it already meets the basic requirements for a price guard. However, I would be happy about an internationalization. Translations would have to be added. 
+I'm happy about pull requests. I do not actively develop the project because it already meets the basic requirements for a price guard. However, I would be happy about an internationalization. Translations would have to be added. Currently YAAW.de is mostly for the Amazon.de market with german messages.
+### Roadmap (To-Dos)
+* Multilanguage support 
 
 ## Setup your own pricetracker for amazon
 
@@ -57,4 +59,4 @@ I'm happy about pull requests. I do not actively develop the project because it 
     ```
     * * * * * /usr/bin/curl -m 59 -s 'yourhost/core/control/autoload.php' &>/dev/null
     ```
-5. Check `url` variable withing `\assets\js\app.js` to locate the running backend.
+5. Check `url` variable within `\assets\js\app.js` to locate the running backend.
