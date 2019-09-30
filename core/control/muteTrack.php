@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Javan
- * Date: 14.02.2017
- * Time: 15:29 Uhr
- */
 
 header( 'Content-type: text/html; charset=utf-8' );
 header('Access-Control-Allow-Origin: *');

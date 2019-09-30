@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Erstellungszeit: 21. Feb 2017 um 23:06
--- Server-Version: 5.5.52-MariaDB
--- PHP-Version: 5.6.27
+-- Erstellungszeit: 30. Sep 2019 um 19:52
+-- Server-Version: 5.5.64-MariaDB
+-- PHP-Version: 7.1.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,7 +30,6 @@ USE `yaaw`;
 -- Tabellenstruktur für Tabelle `Prices`
 --
 
-DROP TABLE IF EXISTS `Prices`;
 CREATE TABLE `Prices` (
   `PriceID` int(11) NOT NULL,
   `ProductID` int(11) NOT NULL,
@@ -42,13 +43,16 @@ CREATE TABLE `Prices` (
 -- Tabellenstruktur für Tabelle `Products`
 --
 
-DROP TABLE IF EXISTS `Products`;
 CREATE TABLE `Products` (
   `ProductID` int(11) NOT NULL,
   `ASIN` char(15) NOT NULL,
+  `Region` char(5) NOT NULL,
+  `ProductCode` char(5) NOT NULL,
   `ProductTitle` char(255) NOT NULL,
   `ProductUrl` char(255) NOT NULL,
-  `ObservationSince` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `ProductImage` char(255) NOT NULL,
+  `ObservationSince` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LastUpdate` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -57,15 +61,18 @@ CREATE TABLE `Products` (
 -- Tabellenstruktur für Tabelle `Tracks`
 --
 
-DROP TABLE IF EXISTS `Tracks`;
 CREATE TABLE `Tracks` (
   `TrackID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
   `ProductID` int(11) NOT NULL,
   `Created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `IsActive` tinyint(1) NOT NULL DEFAULT '1',
+  `IsFavorite` tinyint(1) NOT NULL DEFAULT '0',
+  `IsMuted` tinyint(1) NOT NULL DEFAULT '0',
   `PriceStarted` float NOT NULL,
-  `PriceAlarm` float NOT NULL
+  `PriceAlarm` float NOT NULL,
+  `LastEmail` int(11) NOT NULL,
+  `LastEmailPrice` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -74,12 +81,10 @@ CREATE TABLE `Tracks` (
 -- Tabellenstruktur für Tabelle `Users`
 --
 
-DROP TABLE IF EXISTS `Users`;
 CREATE TABLE `Users` (
   `UserID` int(11) NOT NULL,
   `Email` char(255) NOT NULL,
-  `Created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `LastLogin` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `Created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -97,7 +102,7 @@ ALTER TABLE `Prices`
 --
 ALTER TABLE `Products`
   ADD PRIMARY KEY (`ProductID`),
-  ADD UNIQUE KEY `ASIN` (`ASIN`);
+  ADD UNIQUE KEY `ASIN` (`ASIN`,`Region`) USING BTREE;
 
 --
 -- Indizes für die Tabelle `Tracks`
@@ -121,21 +126,26 @@ ALTER TABLE `Users`
 --
 ALTER TABLE `Prices`
   MODIFY `PriceID` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT für Tabelle `Products`
 --
 ALTER TABLE `Products`
-  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ProductID` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT für Tabelle `Tracks`
 --
 ALTER TABLE `Tracks`
-  MODIFY `TrackID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `TrackID` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT für Tabelle `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

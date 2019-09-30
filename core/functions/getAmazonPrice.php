@@ -2,7 +2,6 @@
 
 require_once ('../secrets.php');
 
-// Melde alle Fehler außer E_NOTICE
 error_reporting(E_ALL & ~E_NOTICE);
 
 //  REQUIREMENTS - cURL and CLI
@@ -106,5 +105,3 @@ function aws_signed_request($region, $params) {
 		return $pxml;
 	}
 }
-
-?>

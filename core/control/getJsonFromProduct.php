@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Javan
- * Date: 14.02.2017
- * Time: 13:11 Uhr
- */
+
 header('Content-type:application/json;charset=utf-8');
 
 require_once("../functions/getAmazonASIN.php");
@@ -26,11 +21,8 @@ if (isset($_REQUEST['product_url']) && !isset($_REQUEST['asin']))
     exit;
 }
 
-
-
 if (strlen($asin) == 10)
 {
-    // Region code and Product ASIN
     $response = getAmazonPrice($region, $asin);
     echo json_encode($response);
 } else {

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Javan
- * Date: 14.02.2017
- * Time: 15:28 Uhr
- */
 
 header('Content-type:application/json;charset=utf-8');
 header('Access-Control-Allow-Origin: *');
@@ -17,7 +11,7 @@ require_once ('../mysql.php');
 
 if (isset($_REQUEST['product_url']) && !isset($_REQUEST['asin']))
 {
-    $url = $_REQUEST['product_url']; // e.g. https://www.amazon.com/gp/product/1491910291/
+    $url = $_REQUEST['product_url']; // e.g. https://www.amazon.de/Amazon-Fire-TV-Stick-4K-Ultra-Hd-Alexa-Sprachfernbedienung-Alexa/dp/B079QHMFWC/ref=as_li_ss_tl?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=fire+tv+stick&qid=1569871128&s=gateway&sr=8-2&linkCode=ll1&tag=yaaw-21&linkId=436f40f5871021a4100c6eba1c75548c&language=de_DE
     $ASIN = getAmazonASIN($url);
     $region = getAmazonRegion($url);
 } else if (!isset($_REQUEST['product_url']) && isset($_REQUEST['asin']))
@@ -72,4 +66,5 @@ if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_
     $error["error"] = "Fehlende oder falsche Parameter.";
 }
 
+// Send Result
 echo json_encode( $error );

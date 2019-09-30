@@ -25,8 +25,8 @@ echo str_repeat('        ',1024*8); //<-- For some reason it now even works with
 <?php
 
 /**
- * Diese Datei muss über einen Cron-Job jede Minute von einem Server aufgerufen werden
- * Damit die Preise in der Datenbank aktuell bleiben
+ * This file must be called every minute by a server via a cron job
+ * To keep the prices in the database up to date
  */
 
 $initime = time();

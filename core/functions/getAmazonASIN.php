@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Javan
- * Date: 14.02.2017
- * Time: 13:12 Uhr
- */
 
 /**
  * Gets ASIN by url of a product

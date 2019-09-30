@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Javan
- * Date: 15.02.2017
- * Time: 16:37 Uhr
- */
 
 require_once ('secrets.php');
 
@@ -24,4 +18,3 @@ function close_mysql($mysqli)
 }
 register_shutdown_function('close_mysql', $mysqli);
 
-?>

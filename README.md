@@ -1,3 +1,21 @@
+
+
+# YAAW -  Yet Another AmazonWatcher
+YAAW is a price monitoring service for Amazon products that informs you about positive price changes of your desired products.
+
+![YAAW-LOGO](assets/img/AmazonWatcher3.png)
+
+## Usage
+- For the registration only the **E-Mail-address** is needed.
+- Amazon products can then be saved with the indication of their **URL**.
+- Another input field allows you to enter a specific **desired price**, or a **upper price limit** for the product. 
+- If the price falls below this value, a **notification** is automatically sent to the corresponding e-mail.
+- A list of the monitored products allows a quick overview of the **price history**. 
+
+## Try it live
+* Try it [LIVE](https://www.yaaw.de/).
+* See also our [Android-App](https://play.google.com/store/apps/details?id=de.javan.yaaw).
+
 ```
  __     __                       __          __
  \ \   / /     /\         /\     \ \        / /
@@ -6,25 +24,37 @@
     | |     / ____ \   / ____ \     \  /\  /   
     |_|    /_/    \_\ /_/    \_\     \/  \/     
     
-```   
-![YAAW-LOGO](assets/img/AmazonWatcher3.png)
+```
 
-Try it [LIVE](https://www.yaaw.de/).
+## Used technologies
+* PHP used for back-end
+* MySql used for database
+* jQuery, Fontawesome and Bootstrap4 used for front-end
 
-See also our [Android-App](https://play.google.com/store/apps/details?id=de.javan.yaaw).
+## Contribute
+I'm happy about pull requests. I do not actively develop the project because it already meets the basic requirements for a price guard. However, I would be happy about an internationalization. Translations would have to be added. 
 
-## YAAW -  Yet Another AmazonWatcher
-YAAW ist ein Preisbeobachter für Amazon Produkte, der dich über positive Preisveränderungen deiner Wunschprodukte informiert.
+## Setup your own pricetracker for amazon
 
-## Nutzung
-- Für die Anmeldung wird lediglich die **E-Mail-Adresse** benötigt.<br>
-- Anschließend können Amazon-Produkte mit der Angabe ihrer **URL** gespeichert werden.<br>
-- Ein weiteres Eingabefeld ermöglicht einen bestimmten **Wunschpreis**, bzw. eine **Preisobergrenze** für das Produkt anzugeben. 
-- Sinkt der Preis unter diesen Wert, wird automatisch eine **Benachrichtigung** an die zugehörige E-Mail versendet.
-- Eine Auflistung der gespeicherten Artikel ermögllicht unter anderem eine schnelle Übersicht des **Preisverlaufes**. 
-
-## Ordner
-Dokumente wie Mock-Ups, User-Storys etc. finden sich im Verzeichnis `/docs`<br>
-Das Back-End befindet sich im Ordner **_core._**<br>
-
-
+1. Create MySql Database. Import `\docs\Database\yaaw.sql`
+2. Register Amazon account and create [AWS API Keys](https://console.aws.amazon.com/iam/home?region=us-west-2#/security_credential).
+3. Create `secrets.php` into `\core`.
+    ```
+    <?php
+    // Amazon secrets
+    $public_key = "public_key";
+    $private_key = "private_key";
+    $associate_tag  = "yaaw-21"; 
+    
+    // Mysql secrets
+    $host = "localhost";
+    $user = "root";
+    $password = "password";
+    $database = "database";
+    ?>
+    ```
+4. Add Cronjob to enable price tracking and email notifications.
+    ```
+    * * * * * /usr/bin/curl -m 59 -s 'yourhost/core/control/autoload.php' &>/dev/null
+    ```
+5. Check `url` variable withing `\assets\js\app.js` to locate the running backend.

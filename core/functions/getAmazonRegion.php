@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Javan
- * Date: 22.02.2017
- * Time: 00:44 Uhr
- */
 
 function getAmazonRegion($url){
     $host = parse_url($url, PHP_URL_HOST);
