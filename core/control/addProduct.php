@@ -37,9 +37,9 @@ if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_
         $mysqli->query("INSERT INTO Users (Email) VALUES ('".$email."')");
         $UserID = $mysqli->insert_id;
 
-        $subject = "Yet Another AmazonWatcher";
-        $message = '<p>Vielen Dank f&uuml;r Deine Anmeldung auf <a href="https://www.yaaw.de/list.html?email='.$email.'"><strong>www.YAAW.de</strong></a>.</p>';
-        $message .= '<p>Das warst nicht Du? Dann schreib uns eine Mail indem du auf diese Email antwortest.</p>';
+        $subject = "Anmeldung";
+        $message = '<p>Vielen Dank f&uuml;r Deine Anmeldung auf deinem Preiswächter für Amazon <a href="https://www.yaaw.de/list.html?email='.$email.'"><strong>YAAW.de</strong></a>.<br>Um Deine beobachten Produkte zu verwalten, kannst du einfach auf <a href="https://www.yaaw.de/list.html?email='.$email.'">den Link</a> klicken.</p>';
+        $message .= '<p>Das warst nicht Du? Dann schreib uns eine Mail.</p>';
         sendMail($email, $subject, $message);
     }else{
         $row = $result->fetch_assoc();

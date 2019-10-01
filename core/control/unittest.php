@@ -11,6 +11,7 @@ header('Content-type:text/plain;charset=utf-8');
 require_once ("../functions/getAmazonASIN.php");
 require_once ("../functions/getAmazonPrice.php");
 require_once ("../functions/getAmazonRegion.php");
+require_once ("../functions/sendMail.php");
 require_once ('../mysql.php');
 
 /**
@@ -49,14 +50,7 @@ for ($i = 0; $i < 1; $i++)
 /**
  * Test sending mail
  */
-// To send HTML mail, the Content-type header must be set
-$from = 'AmazonWatcher@yaaw.de';
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
-$headers .= "X-MSMail-Priority: High" . "\r\n";
-$headers .= "From: $from" . "\r\n" .
-    "Reply-To: $from" . "\r\n" .
-    "Return-Path: $from" . "\r\n" .
-    "X-Mailer: PHP/" . phpversion();
-$mailed = mail("AmazonWatcher@yaaw.de", "Unittest - Success", "Yes, someone did a unittest.php", $headers);
+$subject = "Unittest";
+$message = '<p>Yes, someone did a unittest.php</p>';
+$mailed = sendMail("AmazonWatcher@yaaw.de", $subject, $message);
 var_dump($mailed);
