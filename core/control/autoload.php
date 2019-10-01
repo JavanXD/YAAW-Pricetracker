@@ -1,4 +1,8 @@
 <?php
+/**
+ * This file should keep protected and stay only serverside accessible.
+ */
+
 header('Content-Type: text/html; charset=utf-8');
 
 // I think maybe you can set output_buffering using ini_set here, but I'm not sure.
@@ -19,6 +23,7 @@ echo str_repeat('        ',1024*8); //<-- For some reason it now even works with
 <html>
 <head>
     <title>Autoload</title>
+    <meta http-equiv="refresh" content="60">
 </head>
 <body>
 
@@ -63,7 +68,7 @@ if ($result->num_rows > 0)
             // send email after reaching the desired price
             if($product['price'] <= $row["PriceAlarm"])
             {
-                // send email only every 24h and if notifications are activated
+                // send email only every 24h
                 if ($row["LastEmail"] < time()-24*60*60)
                 {
                     // send email if it is not muted
@@ -73,9 +78,13 @@ if ($result->num_rows > 0)
                         if ($product['price'] != $row["LastEmailPrice"])
                         {
                             $message = createMessage($row, $product);
-                            sendMail($row["Email"], $row["ProductTitle"], $message);
-                            echo "<p>" . $product['price'] . " <= " . $row["PriceAlarm"] . " - Sende Email an " . $row['Email'] . "</p>";
-                            $mysqli->query("UPDATE Tracks SET LastEmail=UNIX_TIMESTAMP(), LastEmailPrice='" . $product['price'] . "' WHERE TrackID='" . $row["TrackID"] . "'");
+                            $mailed = sendMail($row["Email"], $row["ProductTitle"], $message);
+                            if ($mailed) {
+                                echo "<p>" . $product['price'] . " <= " . $row["PriceAlarm"] . " - Sende Email an " . $row['Email'] . "</p>";
+                                $mysqli->query("UPDATE Tracks SET LastEmail=UNIX_TIMESTAMP(), LastEmailPrice='" . $product['price'] . "' WHERE TrackID='" . $row["TrackID"] . "'");
+                            } else {
+                                echo "<p>" . $product['price'] . " <= " . $row["PriceAlarm"] . " - Error: Fehler beim Senden an " . $row['Email'] . "</p>";
+                            }
                         } else {
                             echo "<p>" . $product['price'] . " <= " . $row["PriceAlarm"] . " - Email wurde mit diesem Preis bereits versandt. (" . $row['Email'] . ")</p>";
                         }

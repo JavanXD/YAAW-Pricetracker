@@ -1,4 +1,8 @@
 <?php
+/**
+ * This file should not be deployed into production.
+ * It is usabe to test PHP Version and to check if the most required functions are enabled.
+ */
 
 error_reporting(E_ALL);
 
@@ -54,5 +58,5 @@ $headers .= "From: $from" . "\r\n" .
     "Reply-To: $from" . "\r\n" .
     "Return-Path: $from" . "\r\n" .
     "X-Mailer: PHP/" . phpversion();
-$mailed = mail("kontakt@javan.de", "Unittest - Success", "Yes, someone did a unittest.php", $headers);
+$mailed = mail("AmazonWatcher@yaaw.de", "Unittest - Success", "Yes, someone did a unittest.php", $headers);
 var_dump($mailed);
