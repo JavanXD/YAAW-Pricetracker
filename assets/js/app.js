@@ -223,7 +223,7 @@ function addProductToLayout(product) {
         +'</a></h5></div>'
         +'<div id="collapse_' + product['TrackID'] + '" class="collapse" role="tabpanel" aria-labelledby="heading_' + product['TrackID'] + '"><div class="card-block">'
         +'<img src="' + product['ProductImage'] + '" alt="" class="pull-left amazon-image" />'
-        +'<a href="' + decodeURIComponent(product['ProductUrl']) + '" target="_blank" rel="noreferrer" class="text-muted">' + product['ProductTitle'] + '</a>'
+        +'<a href="' + decodeURIComponent(product['ProductUrl']) + '" target="_blank" rel="noreferrer noopener" class="text-muted">' + product['ProductTitle'] + '</a>'
         +'<p><i class="fa fa-play" aria-hidden="true"></i> Preis gestartet bei <strong>' + product['PriceStarted'] + ' ' + product['ProductCode'] + '</strong> '
         +'<br /><i class="fa fa-bell" aria-hidden="true"></i> Benachrichtigung bei <strong>' + product['PriceAlarm'] + ' ' + product['ProductCode'] + '</strong></p>'
         +'<a href="' + decodeURIComponent(product['ProductUrl']) + '" target="_blank" rel="noreferrer" class="btn btn-outline-secondary text-success pull-right"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Zum Angebot</a>'
