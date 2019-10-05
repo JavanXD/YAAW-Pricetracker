@@ -1,6 +1,9 @@
 <?php
 /**
  * This file should keep protected and stay only serverside accessible.
+ *
+ * This file must be called every minute by a server via a cron job
+ * to keep the prices in the database up to date
  */
 
 header('Content-Type: text/html; charset=utf-8');
@@ -29,17 +32,15 @@ echo str_repeat('        ',1024*8); //<-- For some reason it now even works with
 
 <?php
 
-/**
- * This file must be called every minute by a server via a cron job
- * To keep the prices in the database up to date
- */
-
 $initime = time();
 
 require_once ('../mysql.php');
 require_once ('../functions/sendMail.php');
 require_once ('../functions/getAmazonPrice.php');
 
+if (!isset($_GET['admin']) || isset($_GET['admin']) && $_GET['admin'] !== ADMIN_PASSWORD) {
+    die("Failed authentication.");
+}
 
 $sql = "SELECT Tracks.TrackID, Tracks.ProductID, Tracks.LastEmail, Tracks.LastEmailPrice, Products.ProductTitle, Products.ProductUrl, Products.ASIN, Products.Region, Tracks.PriceAlarm, Users.Email 
         FROM Tracks, Users, Products

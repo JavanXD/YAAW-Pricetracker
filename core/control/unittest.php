@@ -4,15 +4,20 @@
  * It is usabe to test PHP Version and to check if the most required functions are enabled.
  */
 
-error_reporting(E_ALL);
+require_once ('../mysql.php');
 
 header('Content-type:text/plain;charset=utf-8');
+
+if (!isset($_GET['admin']) || isset($_GET['admin']) && $_GET['admin'] !== ADMIN_PASSWORD) {
+    die("Failed authentication.");
+}
+
+error_reporting(E_ALL);
 
 require_once ("../functions/getAmazonASIN.php");
 require_once ("../functions/getAmazonPrice.php");
 require_once ("../functions/getAmazonRegion.php");
 require_once ("../functions/sendMail.php");
-require_once ('../mysql.php');
 
 /**
  * Test php functions
