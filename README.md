@@ -44,19 +44,24 @@ I'm happy about pull requests. I do not actively develop the project because it 
     ```
     <?php
     // Amazon secrets
-    $public_key = "public_key";
-    $private_key = "private_key";
-    $associate_tag  = "yaaw-21"; 
+    define('AWS_PUBLIC_KEY', 'AWS_PUBLIC_KEY');
+    define('AWS_PRIVATE_KEY', 'AWS_PRIVATE_KEY');
+    define('ASSOCIATE_TAG', 'yaaw-21'); // Put your Affiliate Code here
     
-    // Mysql secrets
-    $host = "localhost";
-    $user = "root";
-    $password = "password";
-    $database = "database";
+    // MySql secrets
+    define('DB_HOST', 'localhost');
+    define('DB_USER', 'DB_USER');
+    define('DB_PASSWORD', 'DB_PASSWORD');
+    define('DB_DATABASE', 'DB_DATABASE');
+    
+    // Common
+    define('CORS', 'https://www.yaaw.de');
+    define('WATCHER_URI', 'https://www.yaaw.de');
+    define('ADMIN_PASSWORD', 'ADMIN_PASSWORD');
     ?>
     ```
 4. Add Cronjob to enable price tracking and email notifications.
     ```
-    * * * * * /usr/bin/curl -m 59 -s 'yourhost/core/control/autoload.php' &>/dev/null
+    * * * * * /usr/bin/curl -m 59 -s 'yourhost/core/control/autoload.php?admin=ADMIN_PASSWORD' &>/dev/null
     ```
 5. Check `url` variable within `\assets\js\app.js` to locate the running backend.
