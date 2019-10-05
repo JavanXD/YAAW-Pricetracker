@@ -1,9 +1,9 @@
 <?php
 
-header( 'Content-type: text/html; charset=utf-8' );
-header('Access-Control-Allow-Origin: *');
-
 require_once ('../mysql.php');
+
+header('Content-type: text/html; charset=utf-8');
+header('Access-Control-Allow-Origin: ' . CORS);
 
 if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL) && isset($_REQUEST['TrackID'])) {
 
@@ -24,7 +24,7 @@ if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_
 
     // Send Result
     if (isset($_REQUEST['directAccess'])) {
-        header("Location: https://www.yaaw.de/list.html?email=" . urlencode($email));
+        header("Location: " . WATCHER_URI . "/list.html?email=" . urlencode($email));
         exit;
     } else {
         echo json_encode( $json );

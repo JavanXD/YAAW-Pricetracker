@@ -1,13 +1,14 @@
 <?php
 
+require_once ('../mysql.php');
+
 header('Content-type:application/json;charset=utf-8');
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: ' . CORS);
 
 require_once("../functions/getAmazonASIN.php");
 require_once("../functions/getAmazonPrice.php");
 require_once("../functions/getAmazonRegion.php");
 require_once("../functions/sendMail.php");
-require_once ('../mysql.php');
 
 if (isset($_REQUEST['product_url']) && !isset($_REQUEST['asin']))
 {
@@ -38,8 +39,7 @@ if (isset($_REQUEST['email']) && filter_var($_REQUEST['email'], FILTER_VALIDATE_
         $UserID = $mysqli->insert_id;
 
         $subject = "Anmeldung";
-        $message = '<p>Vielen Dank f&uuml;r Deine Anmeldung auf deinem Preiswächter für Amazon <a href="https://www.yaaw.de/list.html?email='.$email.'"><strong>YAAW.de</strong></a>.<br>Um Deine beobachten Produkte zu verwalten, kannst du einfach auf <a href="https://www.yaaw.de/list.html?email='.$email.'">den Link</a> klicken.</p>';
-        $message .= '<p>Das warst nicht Du? Dann schreib uns eine Mail.</p>';
+        $message = welcomeMessage($email);
         sendMail($email, $subject, $message);
     }else{
         $row = $result->fetch_assoc();

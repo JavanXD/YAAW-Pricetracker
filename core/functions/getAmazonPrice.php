@@ -65,7 +65,6 @@ function getPage($url) {
 }
 
 function aws_signed_request($region, $params) {
-    global $associate_tag, $public_key, $private_key;
 
     $method = "GET";
 	$host = "ecs.amazonaws." . $region;
@@ -73,8 +72,8 @@ function aws_signed_request($region, $params) {
 	$uri = "/onca/xml";
 
 	$params["Service"] = "AWSECommerceService";
-	$params["AssociateTag"] = $associate_tag;
-	$params["AWSAccessKeyId"] = $public_key;
+	$params["AssociateTag"] = ASSOCIATE_TAG;
+	$params["AWSAccessKeyId"] = AWS_PUBLIC_KEY;
 	$params["Timestamp"] = gmdate("Y-m-d\TH:i:s\Z");
 	$params["Version"] = "2011-08-01";
 
@@ -90,7 +89,7 @@ function aws_signed_request($region, $params) {
 	$canonicalized_query = implode("&", $canonicalized_query);
 
 	$string_to_sign = $method . "\n" . $host . "\n" . $uri . "\n" . $canonicalized_query;
-	$signature = base64_encode(hash_hmac("sha256", $string_to_sign, $private_key, True));
+	$signature = base64_encode(hash_hmac("sha256", $string_to_sign, AWS_PRIVATE_KEY, True));
 	$signature = str_replace("%7E", "~", rawurlencode($signature));
 
 	$request = "http://" . $host . $uri . "?" . $canonicalized_query . "&Signature=" . $signature;
